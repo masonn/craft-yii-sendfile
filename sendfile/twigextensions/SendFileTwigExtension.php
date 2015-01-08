@@ -18,7 +18,7 @@ class SendFileTwigExtension extends \Twig_Extension
 
 	public function sendFileFilter($asset)
 	{
-		return craft()->request->sendFile( $asset['filename'], @file_get_contents( $asset->getSource()->settings['path'] . $asset['filename'] ) );
+		return craft()->request->sendFile( $asset['filename'], @file_get_contents( craft()->config->parseEnvironmentString( $asset->getSource()->settings['path'] ) . $asset['filename'] ) );
 	}
 
 }
